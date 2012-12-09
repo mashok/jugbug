@@ -1,0 +1,24 @@
+{ "name": "jugbug"
+, "version": "0.0.1"
+, "engines": ["node >= 0.4.0"]
+, "main": "server.js"
+, "dependencies":
+  { "ejs":              "*"
+  , "ejs-ext":          "< 0.1.2"
+  , "jade": "*"
+  , "express":          "~2.x"
+  , "railway":          ">= 0.0.4"
+  , "jugglingdb":       ">= 0.1.0"
+  , "coffee-script":    ">= 1.1.1"
+  , "passport": ">= 0.0.0"
+  , "passport-singly": ">= 0.0.0"
+  },
+  "devDependencies":
+  { "nodeunit":         "*"
+  , "sinon":            "*"
+  , "semicov":          "*"
+  }
+, "scripts":
+  { "test": "nodeunit test/*/*"
+  }
+}
