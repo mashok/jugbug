@@ -1,7 +1,12 @@
 
 action('home', function () {
 	
-	console.log(req.user);
+	if(req.user != undefined){
+	console.log("************provider object "+req.user._raw);
 
-   render('home.html');
+	//render('home.html', {users: req.user.provider });
+	}
+   //console.log(req.session);
+   render('home.html', {users: "Not yet set" });
+
 });
