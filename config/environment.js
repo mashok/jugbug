@@ -68,19 +68,21 @@ passport.use(new SinglyStrategy({
 app.configure(function(){
    
 		 // make a custom html template
-  app.register('.html', {
+  /*app.register('.html', {
     compile: function(str, options){
       return function(locals){
         return str;
       };
     }
-  });
+  });*/
+
+  //app.register('.html', require('ejs')); 
 
 
 	var cwd = process.cwd();
     
     app.use(express.static(cwd + '/public', {maxAge: 86400000}));
-    app.set('view engine', 'jade');
+    app.set('view engine', 'ejs');
     app.set('view options', {complexNames: true});
     app.set('jsDirectory', '/javascripts/');
     app.set('cssDirectory', '/stylesheets/');
