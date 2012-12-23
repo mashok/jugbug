@@ -10,12 +10,19 @@ action('landingPage', function () {
 
 	render('landing.ejs', {user: req.user, title: 'Envwe & Get Envweed!'}  );
 	} else {
-var userObj = mongoose.model('userObj', userSchema);
 
+//new userModel(req.user);
+var userObj = mongoose.model('userObj', userSchema);
 var userMod = new userObj(req.user);
 //console.log('&&&&&&&&&&&&'+ req.user);
-console.log('&&&&&&&&&&&&'+ userMod);
-
+//console.log('&&&&&&&&&&&&'+ userMod);
+userMod.save(function(error, result){
+	if(error){
+		console.console.log('error while saving data'+error);
+	} else{
+		console.log('data saved succeff'+result);
+	}
+});
 	redirect('/home');
 	}
    //console.log(req.session);

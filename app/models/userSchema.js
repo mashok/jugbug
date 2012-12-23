@@ -1,19 +1,11 @@
-var dbConfig = require('../../config/dbConfig.js');
-
-var conString = dbConfig.development.url;
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+//mongoose.connect('mongodb://localhost/test');
 
 var Schema = mongoose.Schema;
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('conection opened!!!!!!');
-});
 
-
+console.log('in Schema Function');
 var userSchema = new Schema({
     provider: String,
     id: String,
@@ -22,7 +14,7 @@ var userSchema = new Schema({
     emails: [{value: String}],
     _raw: [mongoose.Schema.Types.Mixed],
     _json: {id: String,
-    		services: String,
+    		services: [mongoose.Schema.Types.Mixed],
     		url: String,
     		description: String,
     		thumbnail_url: String,
@@ -35,8 +27,11 @@ var userSchema = new Schema({
     		}
 });
 
- 
-module.exports = userSchema;
-//var userIns = new user();
 
-//module.exports = users;
+//mongoose.model('userObj', userSchema);
+
+module.exports = userSchema;
+
+
+
+//module.exports = userModel;

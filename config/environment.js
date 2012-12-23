@@ -7,6 +7,27 @@ var SINGLY_APP_SECRET = process.env.SINGLY_APP_SECRET || "d46d32ebea6cdc42eecdd9
 
 var CALLBACK_URL = process.env.CALLBACK_URL || "http://localhost:3000/auth/singly/callback";
 
+
+//Initiate DB Connection. 
+// First I initiated in userSchema.js but it tried to open connection
+// multiple times whenever userSchema was referred. 
+// So i haev shifted the code here.
+var dbConfig = require('../config/dbConfig.js');
+var conString = dbConfig.development.url;
+
+var mongoose = require('mongoose');
+mongoose.connect(conString);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('conection opened!!!!!!');
+});
+
+
+
+
+
+
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -14,7 +35,7 @@ var CALLBACK_URL = process.env.CALLBACK_URL || "http://localhost:3000/auth/singl
 //   the user by ID when deserializing.  However, since this example does not
 //   have a database of user records, the complete Singly profile is serialized
 //   and deserialized.
-passport.serializeUser(function (user, done) {
+ passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
@@ -32,7 +53,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   }
 
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 // Use the SinglyStrategy within Passport.
